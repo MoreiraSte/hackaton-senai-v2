@@ -18,16 +18,16 @@ const Login = () => {
                         </div>
                         <div className="login__field">
                             <i className="login__icon fas fa-lock"></i>
-                            <input type="password" className="login__input" placeholder="Password" onChange={(event) => setUser(event.target.value)}/>
+                            <input type="password" className="login__input" placeholder="Password" onChange={(event) => setPass(event.target.value)}/>
                         </div>
-                        <button className="button login__submit" onClick={() => {logInWithEmailAndPassword(user, pass)}}>
-                            <span className="button__text">Log In Now</span>
+                        <button className="button login__submit" onClick={(event) => logInWithEmailAndPassword(event, user, pass)}>
+                            <span className="button__text">Log In</span>
                             <i className="button__icon fas fa-chevron-right"></i>
                         </button>
 
                         <div className="back">
                             <Link to="/">
-                                <p>Back</p>
+                                <button className="bvoltar">Back</button>
                             </Link>
                         </div>
                     </form>

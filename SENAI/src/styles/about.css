@@ -1,0 +1,23 @@
+.back-about::before{
+    content: ' ';
+    background-image: url(/src/assets/wallpaper1.jpg);
+    opacity: 0.5;
+    width: 100vw;
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.hero {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 660px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+

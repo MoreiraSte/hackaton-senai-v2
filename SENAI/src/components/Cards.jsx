@@ -31,7 +31,7 @@ const Cards = () => {
   }, [])
 
   return (
-    <div className='cor'>
+    <div className='cor' id="product">
       <div className="titulo">
         <h1>OUR PRODUCTS</h1>
       </div>
@@ -45,7 +45,7 @@ const Cards = () => {
               <div className="contentBox">
                 <h3>{item.name}</h3>
                 <h2 className="price"><small>{item.price}</small></h2>
-                <Link to='/forum' onClick={() => (storage.atual = item.id)}>
+                <Link to='/forum' onClick={() => (storage.atual = item.id, storage.objectData = item)}>
                   <a href="#" className="view">View</a>
                 </Link>
               </div>

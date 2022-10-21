@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { collection, query, orderBy, onSnapshot, where } from 'firebase/firestore'
+import { collection, query, orderBy, onSnapshot, where, addDoc } from 'firebase/firestore'
 import { db } from "../firebase";
 import '../styles/forum.css';
 import robo1 from "../assets/robo1.png"
@@ -8,14 +8,27 @@ import storage from '../store'
 const Forum = () => {
     const [id, setId] = useState(storage.atual)
     const [data, setData] = useState([])
+    const [objectData, setObjectData] = useState(storage.objectData)
+    const [quest, setQuest] = useState('')
 
     function sendQuestion() {
-        console.log('1')
-        if (!storage.logado) {
+        if (!storage.logado)
             return window.location.href = "/login";
-        }
-        console.log('2')
 
+        if (quest == '')
+            return
+
+        var date = new Date();
+        var current_date = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+        addDoc(collection(db, "Question"), {
+            answer: '',
+            date: `${current_date}`,
+            product: id,
+            question: quest
+        });
+
+        setQuest('')
+        document.getElementById('info').value = ''
     }
 
     useEffect(() => {
@@ -43,23 +56,22 @@ const Forum = () => {
                                 <img src={robo1} alt="img" />
                             </div>
                             <div className="information">
-                                <div className="nome">
-                                    <h2>Titulo</h2>
+                                <div className="nomeRobo">
+                                    <h2>{objectData.name}</h2>
                                 </div>
                                 <br></br>
                                 <div className="price">
-                                    <h4>preço</h4>
+                                    <h4>{objectData.price}</h4>
                                 </div>
                                 <br></br>
                                 <div className="descr">
-                                    <p>descrição</p>
+                                    <p>{objectData.description}</p>
                                 </div>
                             </div>
                         </div>
                         :
                         <></>
                 }
-
 
                 <div className="container">
                     <div className="perguntas100">
@@ -83,8 +95,8 @@ const Forum = () => {
                         </div>
                     </div>
                     <div className="formulario">
-                        <textarea id="info" name="info" rows="4" cols="50" placeholder="Insira sua pergunta" />
-                        <button className="button" onClick={() => sendQuestion()}>Submit</button>
+                        <textarea id="info" name="info" rows="4" cols="50" placeholder="Insira sua pergunta" onChange={(event) => setQuest(event.target.value)} />
+                        <button className="button" id="button" onClick={() => sendQuestion()}>Submit</button>
                     </div>
                     <div className="forum"> </div>
                 </div>

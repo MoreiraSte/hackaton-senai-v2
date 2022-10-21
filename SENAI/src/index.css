@@ -39,3 +39,16 @@
         @apply text-2xl cursor-pointer
     }
 }
+
+::-webkit-scrollbar {
+    width: 15px
+}
+
+::-webkit-scrollbar-track{
+background: black;
+}
+
+::-webkit-scrollbar-thumb {
+border-radius: 15px;
+border: 10px solid #ff5e3b;
+}

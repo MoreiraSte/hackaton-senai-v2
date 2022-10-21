@@ -18,7 +18,7 @@
     height: 40vh;
 }
 
-.nome h2{
+.nomeRobo h2{
     font-size: 50px;
     color: aliceblue;
 }
@@ -71,10 +71,11 @@
 .button{
     background-color: rgb(210, 88, 0);
     color: aliceblue;
-    width: 40%;
+    width: 50%;
     height: 10%;
     
 }
+
 
 .formulario textarea{
     height: 40%;

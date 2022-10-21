@@ -52,14 +52,18 @@ const googleProvider = new GoogleAuthProvider();
 //   }
 // };
 
-const logInWithEmailAndPassword = async (email, password) => {
+async function logInWithEmailAndPassword(event, emailLogin, passwordLogin) {
+    event.preventDefault();
+    // console.log(emailLogin, passwordLogin)
     try {
-        await signInWithEmailAndPassword(auth, email, password).then((response) =>
-            console.log(response)
-        );
+        await signInWithEmailAndPassword(getAuth(app), emailLogin, passwordLogin ).then((response) => {
+            localStorage.setItem('session', JSON.stringify(response));
+            window.location.href  = '/'
+            // JSON.parse(localStorage.getItem('is-open')) || false
+        });
+        // viniciuscabral456@gmail.com
     } catch (err) {
-        console.error(err);
-        alert(err.message);
+        window.location.href = '/login'
     }
 };
 
@@ -69,9 +73,9 @@ const registerWithEmailAndPassword = async (name, email, password) => {
         const user = res.user;
         await addDoc(collection(db, "users"), {
             uid: user.uid,
-            name,
+            name: "",
             authProvider: "local",
-            email,
+            email: "",
         });
     } catch (err) {
         console.error(err);
@@ -89,8 +93,12 @@ const registerWithEmailAndPassword = async (name, email, password) => {
 //   }
 // };
 
-const logout = () => {
-    signOut(auth);
+function logout (event) {
+    event.preventDefault()
+    // signOut(auth);
+    localStorage.removeItem('session');
+    console.log(JSON.parse(localStorage.getItem('is-open')) || false)
+    window.location.href = '/'
 };
 
 export {

@@ -183,3 +183,11 @@
 	left: 5px;
 	bottom: 5px;
 }
+
+.bvoltarr{
+	background-color: #d97e39;
+	padding: 10px;
+	border-radius: 10px;
+	color: white;
+	border-color: #b14603;
+}

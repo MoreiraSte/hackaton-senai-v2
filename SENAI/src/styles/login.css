@@ -123,8 +123,8 @@
 .login__submit {
 	background: #fff;
 	font-size: 14px;
-	margin-top: 30px;
-	padding: 16px 20px;
+	margin-top: 20px;
+	padding: 20px;
 	border-radius: 26px;
 	border: 1px solid #D4D3E8;
 	text-transform: uppercase;
@@ -136,6 +136,7 @@
 	box-shadow: 0px 2px 2px #db8f31;
 	cursor: pointer;
 	transition: .2s;
+	text-align: center;
 }
 
 .login__submit:active,
@@ -182,4 +183,12 @@
 	position: absolute;
 	left: 5px;
 	bottom: 5px;
+}
+
+.bvoltar{
+	background-color: #d97e39;
+	padding: 10px;
+	border-radius: 10px;
+	color: white;
+	border-color: #b14603;
 }

@@ -30,7 +30,7 @@ const Cadastro = () => {
                         </button>
                         <div className="back">
                                 <Link to="/">
-                                    <p>Back</p>
+                                    <button className="bvoltarr">Back</button>
                                 </Link>
                             </div>
                     </form>
