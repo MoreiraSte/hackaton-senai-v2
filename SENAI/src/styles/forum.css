@@ -14,13 +14,15 @@
 }
 .container{
     display: flex;
-    border: 5px solid red;
+    border: 7px solid rgb(187, 187, 187);
     height: 40vh;
+    border-radius: 7px;
 }
 
 .nomeRobo h2{
     font-size: 50px;
     color: aliceblue;
+    margin-right: 70%;
 }
 
 .price h4{
@@ -41,7 +43,7 @@
     
     width: 30%;
 
-    background-color: rgb(248, 162, 131);
+    background-color:  rgb(187, 187, 187);
 }
 
 .back{
@@ -69,10 +71,11 @@
 }
 
 .button{
-    background-color: rgb(210, 88, 0);
-    color: aliceblue;
+    background-color: rgb(0, 0, 0);
+    color: white;
     width: 50%;
     height: 10%;
+    border-radius: 10px;
     
 }
 
@@ -82,6 +85,7 @@
     width: 80%;
     margin-left: 10px;
     margin-top: 20px;
+    border-radius: 10px;
    
 }
 
@@ -102,7 +106,7 @@
 }
 
 .perguntas80{
-    border: 2px solid red;
+    border: 2px solid rgba(181, 181, 181, 0.603);
     width: 80%;
     height: 80%;
     display: flex;
@@ -110,17 +114,18 @@
     flex-direction: column;
     align-items: center;
     overflow-y: scroll;
+    border-radius: 20px;
 }
 
 .item{
     width: 90%;
     height: auto;
-    background-color: rgb(239, 161, 130);
-    color: white;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     height: auto;
     padding: 10px;
     margin-top: 10px;
-    border-radius: 5px;
+    border-radius: 20px;
     margin-top: 5px;
     margin-bottom: 5px;
 }
@@ -155,3 +160,4 @@
     font-size: 24px;
     color: white;
 }
+

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
+import {Link} from 'react-router-dom';
 import { collection, query, orderBy, onSnapshot, where, addDoc } from 'firebase/firestore'
 import { db } from "../firebase";
 import '../styles/forum.css';
@@ -48,6 +49,11 @@ const Forum = () => {
 
     return (
         <div className="background">
+           
+            <Link to='/'>
+            <button className=" bg-zinc-100 h-10 w-20 rounded-md ">Back</button>
+            </Link>
+            
             <div className="conteudo">
                 {
                     id != "" ?
@@ -81,21 +87,21 @@ const Forum = () => {
                                     data.map((item) => (
                                         <div className="item" key={`${item.data}/${item.pergunta}`}>
                                             <div className="data"><p>{item.data}</p></div>
-                                            <p className="pergunta">Pergunta: {item.pergunta}</p>
-                                            <p className="resposta">Resposta: {item.resposta}</p>
+                                            <p className="pergunta">Question: {item.pergunta}</p>
+                                            <p className="resposta">Answer: {item.resposta}</p>
                                         </div>
                                     ))
                                     :
                                     <div className="semPerguntas">
                                         <p className='semPerguntasTexto'>
-                                            Não há perguntas registradas!
+                                            No answers here!
                                         </p>
                                     </div>
                             }
                         </div>
                     </div>
                     <div className="formulario">
-                        <textarea id="info" name="info" rows="4" cols="50" placeholder="Insira sua pergunta" onChange={(event) => setQuest(event.target.value)} />
+                        <textarea id="info" name="info" rows="4" cols="50" placeholder="Your question here" onChange={(event) => setQuest(event.target.value)} />
                         <button className="button" id="button" onClick={() => sendQuestion()}>Submit</button>
                     </div>
                     <div className="forum"> </div>
