@@ -20,13 +20,13 @@ const NavBar = () => {
 
     useEffect(()=>{
         try{
-            JSON.parse(localStorage.getItem('session'))
-            setLogado(true)
+            let local = JSON.parse(localStorage.getItem('session')) || false
+            if(local != false)
+                setLogado(true)
         }catch{
             setLogado(false)
         }
-    }, 
-    [JSON.parse(localStorage.getItem('session'))])
+    }, [])
 
     return (
         <div className='flex w-full justify-between items-center h-20 px-5 z-10 text-white fixed bg-black'>
@@ -44,7 +44,7 @@ const NavBar = () => {
 
             <div className='hidden md:flex'>
                 {
-                    logado?
+                    !logado?
                         <>
                             <Link to='/login'>
                                 <button to='/login' className="px-6 py-2 text-white transition-colors duration-500 border-2 rounded-lg shadow-xl  border-orange-600 shadow-orange-500/10 hover:bg-orange-600">SING IN</button>
@@ -54,7 +54,7 @@ const NavBar = () => {
                             </Link>
                         </>
                     :
-                    <button onClick={(event) => logout(event)} className="px-6 py-2 text-white transition-colors duration-500 border-2 ml-4 rounded-lg shadow-xl bg-orange-600  border-orange-600 shadow-orange-500/10 hover:bg-orange-600">LOGOUT</button>
+                    <button onClick={(event) => (logout(event), setLogado(false))} className="px-6 py-2 text-white transition-colors duration-500 border-2 ml-4 rounded-lg shadow-xl bg-orange-600  border-orange-600 shadow-orange-500/10 hover:bg-orange-600">LOGOUT</button>
                 }
             </div>
 

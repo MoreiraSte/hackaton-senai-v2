@@ -58,28 +58,35 @@ async function logInWithEmailAndPassword(event, emailLogin, passwordLogin) {
     try {
         await signInWithEmailAndPassword(getAuth(app), emailLogin, passwordLogin ).then((response) => {
             localStorage.setItem('session', JSON.stringify(response));
+
+            query(collection(db, 'UserAcess'), where('loginUID', '==', response.user.uid)), (querySnapshot) => {
+                querySnapshot.docs.map((doc) => {
+                    localStorage.setItem('level', JSON.stringify(doc.data()['level']));
+                })
+            }
             window.location.href  = '/'
+
+            // localStorage.setItem('level', JSON.stringify(response.user.uid));
             // JSON.parse(localStorage.getItem('is-open')) || false
-        });
-        // viniciuscabral456@gmail.com
+        })
     } catch (err) {
         window.location.href = '/login'
     }
 };
 
-const registerWithEmailAndPassword = async (name, email, password) => {
+async function registerWithEmailAndPassword (email, password) {
     try {
-        const res = await createUserWithEmailAndPassword(auth, email, password);
+        const res = await createUserWithEmailAndPassword(getAuth(app), email, password);
         const user = res.user;
-        await addDoc(collection(db, "users"), {
-            uid: user.uid,
-            name: "",
-            authProvider: "local",
-            email: "",
+        await addDoc(collection(db, "UserAcess"), {
+            loginUID: user.uid,
+            level: '1',
+            ativo: true
         });
+        window.location.href = '/login'
     } catch (err) {
-        console.error(err);
         alert(err.message);
+        window.location.href = '/cadastro'
     }
 };
 
@@ -97,7 +104,6 @@ function logout (event) {
     event.preventDefault()
     // signOut(auth);
     localStorage.removeItem('session');
-    console.log(JSON.parse(localStorage.getItem('is-open')) || false)
     window.location.href = '/'
 };
 
